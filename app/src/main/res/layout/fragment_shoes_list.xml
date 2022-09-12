@@ -30,6 +30,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <!-- viewHolder-->
+
+
                 <LinearLayout
                     android:id="@+id/shoeList"
                     android:layout_width="match_parent"
