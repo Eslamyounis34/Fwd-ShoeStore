@@ -4,10 +4,7 @@ import android.R.attr.*
 import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -37,6 +34,8 @@ class ShoesListFragment : Fragment() {
         binding =
             DataBindingUtil.inflate(layoutInflater, R.layout.fragment_shoes_list, container, false)
 
+        setHasOptionsMenu(true)
+
         viewModel.shoeList.observe(viewLifecycleOwner, Observer { shoesList ->
             Log.e("testList", shoesList.toString())
             for (i in shoesList) {
@@ -48,6 +47,19 @@ class ShoesListFragment : Fragment() {
             findNavController().navigate(ShoesListFragmentDirections.actionShoesListFragmentToAddShoeFragment())
         }
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater!!.inflate(R.menu.app_menu, menu)
+
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.logout -> findNavController().navigate(ShoesListFragmentDirections.actionShoesListFragmentToLoginFragment())
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun addShoeView(shoe: Shoe) {

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.fwd_advanced.fwd_shoestore.R
@@ -24,25 +25,29 @@ class LoginFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
         binding.loginBt.setOnClickListener {
-         login()
+            login()
         }
 
         binding.signUpButton.setOnClickListener {
             login()
         }
+
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            requireActivity()!!.finish()
+
+        }
         return binding.root
     }
 
-    private fun login(){
+    private fun login() {
         var userName = binding.userNameEditText.text.toString()
         var password = binding.passwordEditText.text.toString()
 
         if (userName.equals("") || password.equals("")) {
             Toast.makeText(context, getString(R.string.login_fail_msg), Toast.LENGTH_SHORT)
                 .show()
-        }
-        else{
-            val action=LoginFragmentDirections.actionLoginFragmentToWelcomeFragment()
+        } else {
+            val action = LoginFragmentDirections.actionLoginFragmentToWelcomeFragment()
             findNavController().navigate(action)
         }
     }

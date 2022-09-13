@@ -21,7 +21,8 @@ import com.fwd_advanced.fwd_shoestore.viewmodels.ShoeViewModel
 
 class AddShoeFragment : Fragment() {
     lateinit var binding: FragmentAddShoeBinding
-      val viewModel: ShoeViewModel by activityViewModels()
+    val viewModel: ShoeViewModel by activityViewModels()
+    var shoe = Shoe("", "", "", "")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +32,7 @@ class AddShoeFragment : Fragment() {
         binding =
             DataBindingUtil.inflate(layoutInflater, R.layout.fragment_add_shoe, container, false)
 
+        binding.shoeDetails = shoe
 
         binding.cancel.setOnClickListener {
             findNavController().navigate(AddShoeFragmentDirections.actionAddShoeFragmentToShoesListFragment())
@@ -45,15 +47,8 @@ class AddShoeFragment : Fragment() {
 
 
     private fun saveButton() {
-        var shoeName = binding.shoeNameEditText.text.toString()
-        var shoeCompany = binding.shoeCompanyEditText.text.toString()
-        var shoeSize = binding.SizeEditText.text.toString()
-        var shoeDesc = binding.DescEditText.text.toString()
 
-        var shoe = Shoe(shoeName, shoeCompany, shoeSize, shoeDesc)
-
-
-        if (shoeName.equals("") || shoeCompany.equals("") || shoeSize.equals("") || shoeDesc.equals(
+        if (shoe.name.equals("") || shoe.company.equals("") || shoe.size.equals("") || shoe.desc.equals(
                 ""
             )
         ) {

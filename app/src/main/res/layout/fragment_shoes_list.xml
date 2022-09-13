@@ -12,35 +12,30 @@
         android:layout_height="match_parent"
         tools:context=".ui.fragments.ShoesListFragment">
 
-        <RelativeLayout
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addShoeDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="20dp"
+            android:src="@drawable/add_icon"
+            app:tint="@color/white" />
+
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/addShoeDetails"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
-                android:layout_margin="20dp"
-                app:tint="@color/white"
-                android:src="@drawable/add_icon" />
+            <!-- viewHolder-->
 
-            <ScrollView
+
+            <LinearLayout
+                android:id="@+id/shoeList"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <!-- viewHolder-->
-
-
-                <LinearLayout
-                    android:id="@+id/shoeList"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                </LinearLayout>
-            </ScrollView>
-        </RelativeLayout>
+            </LinearLayout>
+        </ScrollView>
     </FrameLayout>
 </layout>
